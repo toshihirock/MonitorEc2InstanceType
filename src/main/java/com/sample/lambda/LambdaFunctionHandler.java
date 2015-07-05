@@ -17,7 +17,7 @@ public class LambdaFunctionHandler implements RequestHandler<SNSEvent, Object> {
 
 	@Override
 	public Object handleRequest(SNSEvent input, Context context) {
-    	LambdaLogger logger = context.getLogger();
+		LambdaLogger logger = context.getLogger();
    		logger.log("start");
    		try {
 
@@ -47,12 +47,11 @@ public class LambdaFunctionHandler implements RequestHandler<SNSEvent, Object> {
   			}
   			
    		} catch (JSONException e) {
-    		logger.log(e.getMessage());
-            throw new RuntimeException(e);
+   			logger.log(e.getMessage());
+   			throw new RuntimeException(e);
 		}
 
    		logger.log("end");
-    	
-    	return "OK";
+   		return "OK";
 	}
 }
