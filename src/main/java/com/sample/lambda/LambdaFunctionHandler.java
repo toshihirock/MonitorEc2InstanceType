@@ -22,10 +22,6 @@ public class LambdaFunctionHandler implements RequestHandler<SNSEvent, Object> {
    		try {
 
    			logger.log("Input(json): " + input.toString());
-   			List<SNSRecord> records = input.getRecords();
-   			for(SNSRecord record : records) {
-   				record.toString();
-   			}
     	
    			List<Instance> instances = Util.getInvalidEc2ist(ACCEPTABLE_INSTANCE_TYPE);
    			
