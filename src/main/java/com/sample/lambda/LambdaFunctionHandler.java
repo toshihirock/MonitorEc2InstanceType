@@ -13,7 +13,7 @@ import com.amazonaws.util.json.JSONException;
 public class LambdaFunctionHandler implements RequestHandler<SNSEvent, Object> {
 	
 	private static final String ACCEPTABLE_INSTANCE_TYPE = "t2.micro";
-	private static final String TOPIC_ARN = "arn:aws:sns:ap-northeast-1:";
+	private static final String TOPIC_ARN = "arn:aws:sns:ap-northeast-1:694273932022:NginxErrorTopic";
 
 	@Override
 	public Object handleRequest(SNSEvent input, Context context) {
@@ -36,15 +36,16 @@ public class LambdaFunctionHandler implements RequestHandler<SNSEvent, Object> {
    			}
 
   			List<String> messageIds = Util.publish(instances, TOPIC_ARN);
-
-    		if(messageIds == null || messageIds.isEmpty()) {
-    			logger.log("cloud not publish SNS");
-    			return "";
-    		}
-
-    		for( String messageId: messageIds) {
-    			logger.log("messageId is " + messageId);
-    		}
+  			
+  			if(messageIds == null || messageIds.isEmpty()) {
+  				logger.log("cloud not publish SNS");
+  				return "";
+  			}
+  			
+  			for( String messageId: messageIds) {
+  				logger.log("messageId is " + messageId);
+  			}
+  			
    		} catch (JSONException e) {
     		logger.log(e.getMessage());
             throw new RuntimeException(e);
