@@ -1,0 +1,28 @@
+apply plugin: 'java'
+
+def defaultEncoding = 'UTF-8'
+[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+
+group = 'com.sample.lambda'
+version = '0.0.1-SNAPSHOT'
+
+description = "LambdaGradle"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.amazonaws:aws-lambda-java-core:1.0.0'
+    compile 'com.amazonaws:aws-lambda-java-events:1.0.0'
+    compile 'com.amazonaws:aws-java-sdk-ec2:1.10.2'
+
+    testCompile 'junit:junit:4.11'
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
