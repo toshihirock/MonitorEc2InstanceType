@@ -13,7 +13,7 @@ import com.amazonaws.util.json.JSONException;
 public class LambdaFunctionHandler implements RequestHandler<SNSEvent, Object> {
 	
 	private static final String ACCEPTABLE_INSTANCE_TYPE = "t2.micro";
-	private static final String TOPIC_ARN = "arn:aws:sns:ap-northeast-1:694273932022:NginxErrorTopic";
+	private static final String TOPIC_ARN = "arn:aws:sns:ap-northeast-1:";
 
 	@Override
 	public Object handleRequest(SNSEvent input, Context context) {
